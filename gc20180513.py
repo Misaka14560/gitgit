@@ -1,4 +1,4 @@
-from PIL import Image as Image
+import PIL.Image as Image
 import itchat
 import os
 import math
@@ -21,18 +21,20 @@ image = Image.new("RGBA", (640, 640))
 
 x = 0
 y = 0
-for i in range(0, len(Is) - 2):
+for i in range(0, len(Is) - 1):
     try:
-        img = Image.open("avatar" + "/" + str(num) + ".jpg")
+        img = Image.open("avatar" + "/" + str(i) + ".jpg")
     except IOError:
         print("error")
     else:
         img = img.resize((each_size, each_size), Image.ANTIALIAS)
-        Image.paste(img, (x * each_size, y * each_size))
+        image.paste(img, (x * each_size, y * each_size))
+        x += 1
         if x == lines:
             x = 0
             y += 1
 image = image.convert('RGB')
 image.save("avatar2" + "/" + "all.jpg")
 itchat.send_image("avatar2" + "/" + "all.jpg", "filehelper")
-image.show()
+im = Image.open('avatar2/all.jpg')
+im.show()
