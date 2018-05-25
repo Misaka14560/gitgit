@@ -1,3 +1,4 @@
+# 使用了正则表达式来匹配汉字
 import random
 import re
 n = input("请输入要分组的同学数量\n")
