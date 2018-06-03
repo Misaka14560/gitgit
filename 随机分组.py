@@ -1,13 +1,13 @@
+# 使用了正则表达式来匹配汉字
 import random
+import re
 n = input("请输入要分组的同学数量\n")
 number1 = int(n)
 n = input("请输入每组的人数\n")
 number2 = int(n)
-classmates = []
-print("请输入要分组的同学的姓名\n每打完一个姓名就按一次回车")
-for x in range(number1):
-    name = input()
-    classmates.append(name)
+name = input("请输入要分组同学的姓名 全选后粘贴即可\n")
+pattern = re.compile(r"\w{2,3}")
+classmates = pattern.findall(name)
 random.shuffle(classmates)
 number3 = int(number1 / number2)
 for x in range(number3):
